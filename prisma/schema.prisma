@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                     Int       @id @default(autoincrement())
+  username               String    @unique
+  email                  String    @unique
+  password               String?
+  profilePic             String?
+  oAuthProvider          String?
+  otp                    String
+  otpExpiry              DateTime
+  passwordResetOtp       String?
+  passwordResetOtpExpiry DateTime?
+  role                   UserRole  @default(USER)
+  isVerified             Boolean   @default(false)
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt()
+  sentRequests           Request[] @relation("SentRequests")
+  receivedRequests       Request[] @relation("ReceivedRequests")
+  senderUser             Message[] @relation("sender")
+  receiverUser           Message[] @relation("receiver")
+  chats                  Chat[]    @relation("chatParticipants")
+  Group                  Group[]
+  GroupMembers           Group[]   @relation("groupMembers")
+  groupId                String?
+  user1Id                Chat[]    @relation("user1Id")
+  user2Id                Chat[]    @relation("user2Id")
+
+  @@index([username, email])
+  @@map("users")
+}
+
+model Request {
+  id         Int           @id @default(autoincrement())
+  senderId   Int
+  receiverId Int
+  sender     User          @relation("SentRequests", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver   User          @relation("ReceivedRequests", fields: [receiverId], references: [id], onDelete: Cascade)
+  status     RequestStatus @default(PENDING)
+  chatId     String?
+  chat       Chat?         @relation("chatId", fields: [chatId], references: [id])
+
+  @@map("requests")
+}
+
+model Message {
+  id           String        @id @default(uuid())
+  senderId     Int
+  receiverId   Int?
+  sender       User          @relation("sender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver     User?         @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  content      String
+  createdAt    DateTime      @default(now())
+  status       MessageStatus
+  chatMessage  Chat[]        @relation("chatMessage")
+  lastMessage  Chat[]        @relation("lastMessage")
+  groupId      String?
+  groupMessage Group?        @relation("groupMessage", fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@index([senderId, receiverId])
+  @@map("messages")
+}
+
+model Chat {
+  id              String    @id @default(uuid())
+  isGroupChat     Boolean?  @default(false)
+  lastMessage     String
+  lastmessages    Message   @relation("lastMessage", fields: [lastMessage], references: [id], onDelete: Cascade)
+  unseenMsgCount1 Int       @default(0)
+  unseenMsgCount2 Int       @default(1)
+  participants    User[]    @relation("chatParticipants")
+  messages        Message[] @relation("chatMessage")
+  Group           Group[]
+  user1           Int?
+  user2           Int?
+  user1Id         User?     @relation("user1Id", fields: [user1], references: [id], onDelete: Cascade)
+  user2Id         User?     @relation("user2Id", fields: [user2], references: [id], onDelete: Cascade)
+  chatId          Request[] @relation("chatId")
+
+  @@map("chats")
+}
+
+model Group {
+  id           String    @id @default(uuid())
+  groupAdmin   User      @relation(fields: [admin_id], references: [id], onDelete: Cascade)
+  admin_id     Int
+  groupName    String
+  profilePic   String?
+  members      User[]    @relation("groupMembers")
+  chat_id      String?
+  ChatId       Chat?     @relation(fields: [chat_id], references: [id])
+  groupMessage Message[] @relation("groupMessage")
+
+  @@map("groups")
+}
+
+enum MessageStatus {
+  SENT
+  DELIVERED
+  SEEN
+  FAILED
+  PENDING
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+enum Provider {
+  GOOGLE
+  GITHUB
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}

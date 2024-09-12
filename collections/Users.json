@@ -1,0 +1,282 @@
+{
+  "name": "Users",
+  "requests": [
+    {
+      "name": "GetFriends",
+      "url": "http://localhost:3000/api/users",
+      "method": "PUT",
+      "params": [
+        {
+          "data": [
+            "kadf",
+            "value"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "param",
+            "value"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "param",
+            "value"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "param",
+            "value"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "param",
+            "value"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "param",
+            "value"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "param",
+            "value"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "param",
+            "value"
+          ],
+          "enabled": true
+        }
+      ],
+      "headers": [
+        {
+          "data": [
+            "cache-control",
+            "no-cache"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "user-agent",
+            "ATAC/v0.16.0"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "accept",
+            "*/*"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "accept-encoding",
+            "gzip, deflate, br"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "connection",
+            "keep-alive"
+          ],
+          "enabled": true
+        }
+      ],
+      "body": {
+        "multipart": [
+          {
+            "data": [
+              "afafk",
+              "value"
+            ],
+            "enabled": true
+          },
+          {
+            "data": [
+              "key",
+              "value"
+            ],
+            "enabled": true
+          },
+          {
+            "data": [
+              "key",
+              "value"
+            ],
+            "enabled": true
+          }
+        ]
+      },
+      "auth": "no_auth",
+      "scripts": {
+        "pre_request_script": null,
+        "post_request_script": null
+      },
+      "settings": {
+        "use_config_proxy": true,
+        "allow_redirects": true,
+        "store_received_cookies": true,
+        "pretty_print_response_content": true
+      }
+    },
+    {
+      "name": "login",
+      "url": "http://localhost:3000/api/users",
+      "method": "POST",
+      "params": [],
+      "headers": [
+        {
+          "data": [
+            "cache-control",
+            "no-cache"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "user-agent",
+            "ATAC/v0.16.0"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "accept",
+            "*/*"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "accept-encoding",
+            "gzip, deflate, br"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "connection",
+            "keep-alive"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "content-type",
+            "text/plain"
+          ],
+          "enabled": true
+        }
+      ],
+      "body": {
+        "raw": "{\n\"id\":3\n}"
+      },
+      "auth": {
+        "basic_auth": [
+          "",
+          ""
+        ]
+      },
+      "scripts": {
+        "pre_request_script": null,
+        "post_request_script": null
+      },
+      "settings": {
+        "use_config_proxy": true,
+        "allow_redirects": true,
+        "store_received_cookies": true,
+        "pretty_print_response_content": true
+      }
+    },
+    {
+      "name": "get",
+      "url": "http://localhost:3000/api/users",
+      "method": "POST",
+      "params": [],
+      "headers": [
+        {
+          "data": [
+            "cache-control",
+            "no-cache"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "user-agent",
+            "ATAC/v0.16.0"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "accept",
+            "*/*"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "accept-encoding",
+            "gzip, deflate, br"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "connection",
+            "keep-alive"
+          ],
+          "enabled": true
+        },
+        {
+          "data": [
+            "content-type",
+            "application/x-www-form-urlencoded"
+          ],
+          "enabled": true
+        }
+      ],
+      "body": {
+        "form": [
+          {
+            "data": [
+              "id",
+              "2"
+            ],
+            "enabled": true
+          }
+        ]
+      },
+      "auth": "no_auth",
+      "scripts": {
+        "pre_request_script": "{\n\"id\":4\n}",
+        "post_request_script": null
+      },
+      "settings": {
+        "use_config_proxy": true,
+        "allow_redirects": true,
+        "store_received_cookies": true,
+        "pretty_print_response_content": true
+      }
+    }
+  ]
+}
