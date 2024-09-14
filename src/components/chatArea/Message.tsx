@@ -1,3 +1,4 @@
+"use client";
 import React, { useContext, useRef, useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserContext } from "@/store/ContextProvider";
@@ -19,7 +20,7 @@ const Message = () => {
   }, [selectedChat]);
 
   const getInitial = (username: string) => {
-    console.log(username);
+    // console.log(username);
     return username.charAt(0).toUpperCase();
   };
 
@@ -30,7 +31,7 @@ const Message = () => {
     >
       {selectedChat &&
         selectedChat.map((message) => {
-          console.log(message);
+          // console.log(message);
           const isCurrentUser =
             Number(message?.senderId) === Number(loggedInUser?.id);
 

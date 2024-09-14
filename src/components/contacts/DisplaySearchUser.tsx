@@ -21,6 +21,7 @@ const DisplaySearchUser = ({ friends }: { friends: friendListType }) => {
       id: friends.id,
       type: "search",
       group: false,
+      socketId: friends.socketId,
     };
     // console.log(User);
     setSelectedUser(User);

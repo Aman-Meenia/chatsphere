@@ -45,10 +45,10 @@ export default function LoginPage() {
       password: values.password,
       redirect: false,
     });
-    console.log("RESPONSE " + response);
-    console.log(response);
+    // console.log("RESPONSE " + response);
+    // console.log(response);
     if (response?.error) {
-      console.log(response.error);
+      // console.log(response.error);
       let error = response.error;
       error = error.replace("Error:", "");
       toast.error(error);
@@ -57,7 +57,6 @@ export default function LoginPage() {
       return;
     }
 
-    console.log("WORKING OUTSIDE");
     router.push("/");
     setLoading(false);
   }

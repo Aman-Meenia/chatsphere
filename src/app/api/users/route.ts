@@ -5,6 +5,7 @@ import { responseType } from "@/types/responseType";
 import prisma from "@/db/dbConnect";
 import { getToken } from "next-auth/jwt";
 import { group, profile } from "console";
+import { Socket } from "dgram";
 
 const userTypeValidation = z.object({
   id: z.number(),
@@ -102,6 +103,7 @@ export async function POST(req: NextRequest) {
         id: true,
         groupName: true,
         profilePic: true,
+        socketId: true,
       },
     });
     // console.log("<------------Group List -------------->");
@@ -110,10 +112,11 @@ export async function POST(req: NextRequest) {
     type DetailType = {
       username: string;
       id: string;
-      profilePic: string | null;
+      image: string | null;
       isGroup: boolean;
       lastMessage: string | null;
       unseenMsgCount: number;
+      socketId: string;
     };
 
     const friendsList: DetailType[] = [];
@@ -128,8 +131,9 @@ export async function POST(req: NextRequest) {
       return {
         username: friend.username,
         id: String(friend.id),
-        profilePic: friend.profilePic,
+        image: friend.profilePic,
         isGroup: false,
+        socketId: request?.socketId,
         lastMessage: request.chat?.lastmessages
           ? request?.chat?.lastmessages?.content
           : "",
@@ -145,8 +149,9 @@ export async function POST(req: NextRequest) {
       return {
         username: group.groupName,
         id: group.id,
-        profilePic: group.profilePic,
+        image: group.profilePic,
         isGroup: true,
+        socketId: group.socketId,
         lastMessage: "",
         unseenMsgCount: 0,
       };

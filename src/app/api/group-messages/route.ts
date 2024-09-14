@@ -99,12 +99,12 @@ export async function POST(req: NextRequest) {
       message: "Message fetched successfully",
       messages: [{ allChats: reshapedMessages }],
     };
-    console.log("<--------------------All Chats ------------------>");
-    console.log(allChats);
+    // console.log("<--------------------All Chats ------------------>");
+    // console.log(allChats);
     return NextResponse.json(successResponse);
   } catch (err) {
-    console.log("Error while fetching gorup messages ");
-    console.log(err);
+    // console.log("Error while fetching gorup messages ");
+    // console.log(err);
     const errResponse: responseType = {
       status: 500,
       success: false,

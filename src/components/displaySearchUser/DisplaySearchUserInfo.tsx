@@ -38,8 +38,8 @@ export default function DisplaySearchUserInfo() {
   const [requestLoading, setRequestLoading] = useState(false);
 
   const { data: session } = useSession();
-  console.log("SESSION DATA ");
-  console.log(session);
+  // console.log("SESSION DATA ");
+  // console.log(session);
 
   const [loading, setLoading] = useState(false);
   const fetchFriendshipStatus = async (id: number) => {
@@ -50,13 +50,13 @@ export default function DisplaySearchUserInfo() {
         loginUserId: id,
       })
       .then((response) => {
-        console.log("<-----------------FriendShip status------------------>");
-        console.log(response.data);
+        // console.log("<-----------------FriendShip status------------------>");
+        // console.log(response.data);
         setFriendshipStatus(response?.data?.messages[0]?.friendshipStatus);
       })
       .catch((err) => {
-        console.log("<-----------------FriendShip status------------------>");
-        console.log(err.response.data);
+        // console.log("<-----------------FriendShip status------------------>");
+        // console.log(err.response.data);
         toast.error("Error while fetching friendship status");
       })
       .finally(() => {
@@ -82,7 +82,7 @@ export default function DisplaySearchUserInfo() {
       })
       .then((response) => {
         if (response?.data?.success === true) {
-          console.log(response.data);
+          // console.log(response.data);
           setFriendshipStatus("friends");
           toast.success("Request accepted successfully");
         } else {
@@ -108,16 +108,16 @@ export default function DisplaySearchUserInfo() {
       })
       .then((response) => {
         if (response?.data?.success === true) {
-          console.log(response.data);
+          // console.log(response.data);
           setFriendshipStatus("not_friends");
           toast.success("Request withdraw successfully");
         } else {
-          console.log(response.data);
+          // console.log(response.data);
           toast.error("Error while withdrawing request");
         }
       })
       .catch((err) => {
-        console.log(err.response.data);
+        // console.log(err.response.data);
         toast.error("Error while withdrawing request");
       })
       .finally(() => {
@@ -136,11 +136,11 @@ export default function DisplaySearchUserInfo() {
       })
       .then((response) => {
         if (response?.data?.success === true) {
-          console.log(response.data);
+          // console.log(response.data);
           setFriendshipStatus("not_friends");
           toast.success("Request rejected successfully");
         } else {
-          console.log(response.data);
+          // console.log(response.data);
           toast.error("Error while rejecting request ");
         }
       })
@@ -164,16 +164,16 @@ export default function DisplaySearchUserInfo() {
       })
       .then((response) => {
         if (response?.data?.success === true) {
-          console.log(response.data);
+          // console.log(response.data);
           setFriendshipStatus("request_sent");
           toast.success("Request sent  successfully");
         } else {
-          console.log(response.data);
+          // console.log(response.data);
           toast.error("Error while sending request");
         }
       })
       .catch((err) => {
-        console.log(err.response.data);
+        // console.log(err.response.data);
         toast.error("Error while sending request");
       })
       .finally(() => {
@@ -188,8 +188,8 @@ export default function DisplaySearchUserInfo() {
     if (data) data.type = "friend";
 
     if (data) {
-      console.log("New user set properly ");
-      console.log(data);
+      // console.log("New user set properly ");
+      // console.log(data);
       setSelectedUser({ ...selectedUser, type: "friend" });
     }
   };

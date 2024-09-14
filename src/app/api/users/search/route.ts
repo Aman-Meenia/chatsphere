@@ -11,7 +11,7 @@ const dataTypeValidation = z.object({
 type dataType = z.infer<typeof dataTypeValidation>;
 export async function POST(req: NextRequest) {
   try {
-    //TODO: Get the current user id from toake and exclude it
+    //TODO: Get the current user id from token and exclude it
 
     const data: dataType = await req.json();
 
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
           },
           {
             NOT: {
-              id: Number(1),
+              id: Number(123),
             },
           },
           {
