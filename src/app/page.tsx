@@ -19,6 +19,7 @@ export type friendListType = {
   isGroup?: boolean;
   lastMessage?: string;
   unseenMsgCount?: number;
+  socketId: string;
 };
 
 async function fetchFriendsData(id: number): Promise<FriendsData> {
@@ -45,10 +46,10 @@ export default async function ChatApp() {
     image: session?.user?.image,
     id: Number(session?.user?.id),
   };
-  console.log(
-    "<-----------------------------------------------User detail  ---------------------------------->",
-  );
-  console.log(loggedInUserData);
+  // console.log(
+  //   "<-----------------------------------------------User detail  ---------------------------------->",
+  // );
+  // console.log(loggedInUserData);
 
   if (!session || !session.user?.id) {
     return (

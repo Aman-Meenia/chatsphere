@@ -27,29 +27,29 @@ const Messages = () => {
 
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
   async function getMessages() {
-    console.log("SENDE ID IS " + session.data?.user?.id);
-    console.log("Slected user Id " + selectedUser?.id);
-    console.log(selectedUser);
+    // console.log("SENDE ID IS " + session.data?.user?.id);
+    // console.log("Slected user Id " + selectedUser?.id);
+    // console.log(selectedUser);
 
     const messageType =
       selectedUser?.group === true ? "group-messages" : "messages";
     if (messageType === "group-messages") {
-      console.log("UserId " + session?.data?.user?.id);
-      console.log(selectedUser?.id);
+      // console.log("UserId " + session?.data?.user?.id);
+      // console.log(selectedUser?.id);
       const res = await axios
         .post(`${domain}/api/${messageType}`, {
           userId: Number(session?.data?.user?.id),
           groupId: selectedUser?.id,
         })
         .then((res) => {
-          console.log("RESPONS ");
-          console.log(res);
+          // console.log("RESPONS ");
+          // console.log(res);
           return res.data;
         })
         .catch((res) => {
           return res.data;
         });
-      console.log(res);
+      // console.log(res);
       return res;
     } else {
       const res = await axios
@@ -76,9 +76,9 @@ const Messages = () => {
       // console.log("RES ");
       // console.log(res);
       if (res?.success === true) {
-        console.log("RESPONSE IS THE  ");
-        console.log(res);
-        console.log(res?.messages[0]?.allChats);
+        // console.log("RESPONSE IS THE  ");
+        // console.log(res);
+        // console.log(res?.messages[0]?.allChats);
         setSelectedChat(res?.messages[0]?.allChats);
       } else {
         //TODO: handle when we get error while fetching messages

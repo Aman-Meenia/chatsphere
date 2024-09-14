@@ -14,11 +14,14 @@ const DisplayContact = ({ friends }: { friends: friendListType }) => {
       id: friends.id,
       type: "friend",
       group: false,
+      socketId: friends.socketId,
     };
     if (friends.isGroup) {
       User.group = true;
     }
     friends.unseenMsgCount = 0;
+    console.log("New User Selected ");
+    console.log(User);
     setSelectedUser(User);
   };
 
@@ -30,6 +33,10 @@ const DisplayContact = ({ friends }: { friends: friendListType }) => {
       return message.slice(0, 30) + "...";
     }
     return message;
+  };
+
+  const getFirstCharacterOfNameUppercase = (name: string) => {
+    return name.charAt(0).toUpperCase() + name.slice(1);
   };
 
   const isSelected = selectedUser && selectedUser.id === friends.id;
@@ -50,7 +57,9 @@ const DisplayContact = ({ friends }: { friends: friendListType }) => {
       </Avatar>
       <div className="flex-1 min-w-0">
         <div className="flex justify-between items-baseline">
-          <p className="text-sm font-medium truncate">{friends.username}</p>
+          <p className="text-sm font-medium truncate">
+            {getFirstCharacterOfNameUppercase(friends?.username)}
+          </p>
         </div>
         <p className="text-sm text-gray-400 truncate">
           {truncateMessage(friends?.lastMessage)}

@@ -59,8 +59,8 @@ export const authOptions: NextAuthOptions = {
           if (!comparePassword) {
             throw new Error("Invalid credentials");
           }
-          console.log("USER LOGGED IN SUCCESSFULLY");
-          console.log(user);
+          // console.log("USER LOGGED IN SUCCESSFULLY");
+          // console.log(user);
           return user;
         } catch (err: any) {
           throw new Error(err);
@@ -83,10 +83,10 @@ export const authOptions: NextAuthOptions = {
         token.username = user.username;
         token.email = user.email;
       }
-      console.log(
-        "<--------------------------------------- TOKEN -------------------------->",
-      );
-      console.log(token);
+      // console.log(
+      //   "<--------------------------------------- TOKEN -------------------------->",
+      // );
+      // console.log(token);
       return token;
     },
     async session({ session, token }) {

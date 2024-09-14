@@ -4,6 +4,7 @@ import { fromZodError } from "zod-validation-error";
 import prisma from "@/db/dbConnect";
 import { responseType } from "@/types/responseType";
 import { group } from "console";
+import { pusherServer } from "@/pusher/pusher";
 
 const requestTypeValidation = z
   .object({
@@ -115,6 +116,11 @@ export async function POST(req: NextRequest) {
         senderUsername: message?.sender?.username,
         senderProfilePic: message?.sender?.profilePic,
       };
+
+      // send sokcet message
+      const socketId = groupFind.socketId;
+      pusherServer.trigger(socketId, "incoming-message", messageResponse);
+
       const successResponse: responseType = {
         status: 200,
         success: true,
@@ -150,6 +156,9 @@ export async function POST(req: NextRequest) {
       senderUsername: message?.sender?.username,
       senderProfilePic: message?.sender?.profilePic,
     };
+    // send sokcet message
+    const socketId = groupFind.socketId;
+    pusherServer.trigger(socketId, "incoming-message", messageResponse);
     const successResponse: responseType = {
       status: 200,
       success: true,

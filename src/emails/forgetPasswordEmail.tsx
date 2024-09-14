@@ -20,7 +20,7 @@ export default function ForgetPasswordEmail({
   token,
 }: VerificationEmailProps) {
   const link = process.env.RESET_PASSWORD + "/" + token;
-  console.log("LINK " + link);
+  // console.log("LINK " + link);
   return (
     <Html lang="en" dir="ltr">
       <Head>

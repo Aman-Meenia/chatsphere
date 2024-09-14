@@ -7,6 +7,7 @@ export type contextUserType = {
   id: number | string;
   type: "search" | "friend";
   group: boolean;
+  socketId: string;
 };
 
 export type loggedInUserType = {
@@ -26,6 +27,16 @@ export type contextChatType = {
   senderProfilePic: string | null;
 };
 
+export type contextFriendListType = {
+  username: string;
+  id: number | string;
+  image?: string;
+  isGroup?: boolean;
+  lastMessage?: string;
+  unseenMsgCount?: number;
+  socketId: string;
+};
+
 type selectedUserType = {
   selectedUser: contextUserType | null;
   setSelectedUser: React.Dispatch<React.SetStateAction<contextUserType | null>>;
@@ -35,6 +46,8 @@ type selectedUserType = {
   setLoggedInUser: React.Dispatch<
     React.SetStateAction<loggedInUserType | null>
   >;
+  friendsList: contextFriendListType[];
+  setFriendsList: React.Dispatch<React.SetStateAction<contextFriendListType[]>>;
 };
 
 export const UserContext = createContext<selectedUserType>({
@@ -44,6 +57,8 @@ export const UserContext = createContext<selectedUserType>({
   setSelectedChat: () => {},
   loggedInUser: null,
   setLoggedInUser: () => {},
+  friendsList: [],
+  setFriendsList: () => {},
 });
 
 export const UserContextProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -54,6 +69,9 @@ export const UserContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const [selectedChat, setSelectedChat] = React.useState<contextChatType[]>([]);
   const [loggedInUser, setLoggedInUser] =
     React.useState<loggedInUserType | null>(null);
+  const [friendsList, setFriendsList] = React.useState<contextFriendListType[]>(
+    [],
+  );
 
   return (
     <UserContext.Provider
@@ -64,6 +82,8 @@ export const UserContextProvider: React.FC<{ children: React.ReactNode }> = ({
         setSelectedChat,
         loggedInUser,
         setLoggedInUser,
+        friendsList,
+        setFriendsList,
       }}
     >
       {children}

@@ -38,7 +38,7 @@ const getMessages = async ({
 const FetchMessages = async () => {
   const res = await getMessages({ data: { senderId: 1, receiverId: 1 } });
 
-  console.log(res);
+  // console.log(res);
 
   if (res.success === false) {
     //TODO: handle when we get error while fetching messages

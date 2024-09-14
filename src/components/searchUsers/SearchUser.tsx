@@ -36,7 +36,7 @@ const SearchUser = ({ friendsList }: { friendsList: friendListType[] }) => {
         setSearchResults(reponse.data.messages[0]);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       })
       .finally(() => {
         setLoading(false);
@@ -45,11 +45,10 @@ const SearchUser = ({ friendsList }: { friendsList: friendListType[] }) => {
 
   useEffect(() => {
     if (debouncedSearchTerm) {
-      console.log("Searching for:", debouncedSearchTerm);
+      // console.log("Searching for:", debouncedSearchTerm);
       searchUserFun();
     }
   }, [debouncedSearchTerm]);
-  console.log(searchResults);
   return (
     <>
       <div className="p-4">

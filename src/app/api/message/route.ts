@@ -3,6 +3,7 @@ import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
 import { responseType } from "@/types/responseType";
 import prisma from "@/db/dbConnect";
+import { pusherServer } from "@/pusher/pusher";
 
 const messageValidationType = z
   .object({
@@ -216,6 +217,16 @@ export async function POST(req: NextRequest) {
       senderUsername: message?.sender?.username,
       senderProfilePic: message?.sender?.profilePic,
     };
+
+    console.log(
+      "<------------------------CHAT FIND ----------------------------->",
+    );
+    console.log(findChat);
+
+    const socketId: string = friendCheck.socketId;
+
+    pusherServer.trigger(socketId, "incoming-message", messageResponse);
+
     const successResponse: responseType = {
       success: true,
       status: 200,

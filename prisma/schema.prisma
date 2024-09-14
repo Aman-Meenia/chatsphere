@@ -46,6 +46,7 @@ model Request {
   status     RequestStatus @default(PENDING)
   chatId     String?
   chat       Chat?         @relation("chatId", fields: [chatId], references: [id])
+  socketId   String        @default(uuid())
 
   @@map("requests")
 }
@@ -97,6 +98,7 @@ model Group {
   chat_id      String?
   ChatId       Chat?     @relation(fields: [chat_id], references: [id])
   groupMessage Message[] @relation("groupMessage")
+  socketId     String    @default(uuid())
 
   @@map("groups")
 }
