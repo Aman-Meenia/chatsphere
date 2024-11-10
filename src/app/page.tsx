@@ -46,10 +46,10 @@ export default async function ChatApp() {
     image: session?.user?.image,
     id: Number(session?.user?.id),
   };
-  // console.log(
-  //   "<-----------------------------------------------User detail  ---------------------------------->",
-  // );
-  // console.log(loggedInUserData);
+  console.log(
+    "<-----------------------------------------------User detail  ---------------------------------->",
+  );
+  console.log(loggedInUserData);
 
   if (!session || !session.user?.id) {
     return (
@@ -61,6 +61,7 @@ export default async function ChatApp() {
   }
 
   const friendsData = await fetchFriendsData(Number(session.user.id));
+  console.log("<---------- Freinds Date ------------>");
 
   if (!friendsData.success || !friendsData.messages.length) {
     return (
