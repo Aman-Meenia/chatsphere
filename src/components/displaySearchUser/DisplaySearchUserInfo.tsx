@@ -254,8 +254,9 @@ export default function DisplaySearchUserInfo() {
     }
   };
 
-  const getInitials = (username: string) => {
+  const getInitials = (username: string | undefined) => {
     if (!username) return "";
+
     return username
       .split(" ")
       .map((name) => name[0])
