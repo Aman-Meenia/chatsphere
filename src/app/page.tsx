@@ -61,16 +61,16 @@ export default async function ChatApp() {
   }
 
   const friendsData = await fetchFriendsData(Number(session.user.id));
-  console.log("<---------- Freinds Date ------------>");
-
-  if (!friendsData.success || !friendsData.messages.length) {
-    return (
-      <div className="flex h-screen bg-gray-900 text-white">
-        <div className="w-full lg:w-80 border-r border-gray-700 flex flex-col"></div>
-        <h1>User Not Found</h1>
-      </div>
-    );
-  }
+  // console.log("<---------- Freinds Date ------------>");
+  //
+  // if (!friendsData.success || !friendsData.messages.length) {
+  //   return (
+  //     <div className="flex h-screen bg-gray-900 text-white">
+  //       <div className="w-full lg:w-80 border-r border-gray-700 flex flex-col"></div>
+  //       <h1>User Not Found</h1>
+  //     </div>
+  //   );
+  // }
 
   const friendsList = friendsData.messages[0]?.friendsList || [];
 
