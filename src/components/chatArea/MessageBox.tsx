@@ -100,30 +100,6 @@ const MessageBox = () => {
     setMsg("");
   };
 
-  // useEffect(() => {
-  //   const socketId = selectedUser?.socketId || "";
-  //   pusherClient.subscribe(socketId);
-  //
-  //   pusherClient.bind("incoming-message", (socketMsg: contextChatType) => {
-  //     console.log("<____________________TEXT________________________>");
-  //     console.log(typeof msg);
-  //     console.log(msg);
-  //     const newSocketMsg: contextChatType[] = [];
-  //     newSocketMsg.push(socketMsg);
-  //     if (selectedChat) {
-  //       console.log("New chat added");
-  //       setSelectedChat([...selectedChat, newSocketMsg[0]]);
-  //     } else {
-  //       console.log("Chat for first time ");
-  //       setSelectedChat([socketMsg]);
-  //     }
-  //   });
-  //
-  //   return () => {
-  //     pusherClient.unsubscribe("aman");
-  //   };
-  // }, []);
-
   useEffect(() => {
     const socketId = selectedUser?.socketId || "";
     pusherClient.subscribe(socketId);

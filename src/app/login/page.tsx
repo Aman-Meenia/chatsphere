@@ -62,25 +62,25 @@ export default function LoginPage() {
   }
 
   async function handleGithubLogin() {
-    // const response = await signIn("github", {
-    //   callbackUrl: "/",
-    //   redirect: true,
-    // });
-    // if (response?.error) {
-    //   console.log("ERROR IS " + response.error);
-    //   console.log(response.error);
-    // }
+    const response = await signIn("github", {
+      callbackUrl: "/",
+      redirect: true,
+    });
+    if (response?.error) {
+      console.log("ERROR IS " + response.error);
+      console.log(response.error);
+    }
   }
 
   async function handleGoogleLogin() {
-    // const response = await signIn("google", {
-    //   callbackUrl: "/",
-    //   redirect: true,
-    // });
-    // if (response?.error) {
-    //   console.log("ERROR IS " + response.error);
-    //   console.log(response.error);
-    // }
+    const response = await signIn("google", {
+      callbackUrl: "/",
+      redirect: true,
+    });
+    if (response?.error) {
+      console.log("ERROR IS " + response.error);
+      console.log(response.error);
+    }
   }
 
   return (
@@ -150,7 +150,7 @@ export default function LoginPage() {
                 // TODO: Add google login
 
                 onClick={handleGoogleLogin}
-                className="google h-11 flex cursor-pointer border border-solid border-black bg-white text-black rounded px-6 py-1 hover:bg-black hover:text-white hover:border-white"
+                className="h-11 flex cursor-pointer border border-solid bg-black text-white dark:bg-white dark:text-black px-6 py-1 rounded  hover:dark:bg-gray-200"
               >
                 <div className="mr-4 mt-1 h-fit">Google</div>
                 <FcGoogle className="w-8 h-8" />
@@ -158,7 +158,7 @@ export default function LoginPage() {
               <div
                 // TODO: Add github login
                 onClick={handleGithubLogin}
-                className="github h-11 flex cursor-pointer border border-solid border-white bg-black text-white rounded px-6 py-1 hover:bg-white hover:text-black hover:border-black"
+                className="h-11 flex cursor-pointer border border-solid bg-black text-white dark:bg-white dark:text-black px-6 py-1 rounded hover:dark:bg-gray-200"
               >
                 <div className="mr-4 mt-1 h-fit">Github</div>
                 <FaSquareGithub className="w-8 h-8 cursor-pointer" />
