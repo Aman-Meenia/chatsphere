@@ -28,8 +28,8 @@ export default function DisplaySearchUserInfo() {
   const user = {
     username: userName,
     id: selectedUser?.id,
-    profilePic:
-      "https://cdn.pixabay.com/photo/2023/11/09/19/36/zoo-8378189_1280.jpg",
+    profilePic: selectedUser?.image,
+    // "https://cdn.pixabay.com/photo/2023/11/09/19/36/zoo-8378189_1280.jpg",
   };
   const [friendshipStatus, setFriendshipStatus] = useState<
     "not_friends" | "request_sent" | "request_received" | "friends" | null
@@ -254,17 +254,42 @@ export default function DisplaySearchUserInfo() {
     }
   };
 
+  const getInitials = (username: string) => {
+    if (!username) return "";
+    return username
+      .split(" ")
+      .map((name) => name[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
   return (
     <div className="flex-1 flex flex-col items-center justify-center lg:justify-start p-4">
       <div className="flex-grow flex flex-col items-center justify-center space-y-6">
         <div className="relative w-32 h-32">
-          <Image
-            src={user.profilePic}
-            alt={user.username || ""}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-full"
-          />
+          {user.profilePic ? (
+            <div className="relative w-full h-full rounded-full ring-2 ring-offset-2 dark:ring-offset-gray-900 ring-gray-200 dark:ring-gray-700">
+              <Image
+                src={user.profilePic}
+                alt={user.username || ""}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-full"
+              />
+            </div>
+          ) : (
+            <div className="w-full h-full rounded-full flex items-center justify-center text-3xl font-semibold bg-gray-100 dark:bg-gray-800 ring-2 ring-offset-2 dark:ring-offset-gray-900 ring-gray-200 dark:ring-gray-700">
+              {getInitials(user?.username)}
+            </div>
+          )}
+          {/* <Image */}
+          {/*   src={user.profilePic} */}
+          {/*   alt={user.username || ""} */}
+          {/*   layout="fill" */}
+          {/*   objectFit="cover" */}
+          {/*   className="rounded-full" */}
+          {/* /> */}
         </div>
         <h2 className="text-3xl font-bold">{user.username}</h2>
         {loading ? (

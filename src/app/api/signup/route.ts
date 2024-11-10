@@ -133,7 +133,7 @@ export async function POST(req: NextRequest) {
     });
 
     // send otp to email
-
+    console.log("OTP is " + otp);
     await sendVerificationEmail(data.username, data.email, otp);
     const successResponse: responseType = {
       message: "User created successfully",

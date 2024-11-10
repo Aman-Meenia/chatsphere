@@ -28,14 +28,17 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(errResponse);
     }
 
-    // if (!token?.id) {
-    //   const errResponse: responseType = {
-    //     success: false,
-    //     status: 400,
-    //     message: "Unauthorized user",
-    //   };
-    //   return NextResponse.json(errResponse);
-    // }
+    console.log(" TOken is ");
+    console.log(token);
+
+    if (!token?.id) {
+      const errResponse: responseType = {
+        success: false,
+        status: 400,
+        message: "Unauthorized user",
+      };
+      return NextResponse.json(errResponse);
+    }
     const userId = 1;
     const searchUsers = await prisma.user.findMany({
       where: {
@@ -48,7 +51,7 @@ export async function POST(req: NextRequest) {
           },
           {
             NOT: {
-              id: Number(123),
+              id: Number(token.id),
             },
           },
           {

@@ -20,6 +20,7 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Header from "@/components/header/Header";
 
 const signUpSchema = z.object({
   username: z
@@ -95,102 +96,115 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="flex justify-center items-center  min-h-[calc(100vh-60px)]  bg-gray-100 dark:bg-gray-900">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow dark:bg-gray-800">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white ">
-            Sign Up Page
-          </h2>
-        </div>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input placeholder="Username" {...field} />
-                  </FormControl>
-                  {/* <FormDescription> */}
-                  {/* <Loader2 className="animate-spin" /> */}
-                  {/* <span className="text-sm text-green-500"> */}
-                  {/* Username is available */}
-                  {/* </span> */}
-                  {/* </FormDescription> */}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+    <>
+      <Header />
+      <div className="flex justify-center items-center  min-h-[calc(100vh-60px)]  bg-gray-100 dark:bg-gray-900">
+        <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow dark:bg-gray-800">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white ">
+              Sign Up Page
+            </h2>
+          </div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input placeholder="Username" {...field} />
+                    </FormControl>
+                    {/* <FormDescription> */}
+                    {/* <Loader2 className="animate-spin" /> */}
+                    {/* <span className="text-sm text-green-500"> */}
+                    {/* Username is available */}
+                    {/* </span> */}
+                    {/* </FormDescription> */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input placeholder="email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input type="password" placeholder="Password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="confirmPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Confirm Password"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button className="w-full" type="submit" disabled={loading}>
-              {loading ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                "Sign Up"
-              )}
-            </Button>
-          </form>
-        </Form>
-        <div className="o-auth border-t border-solid border-gray-300 dark:border-gray-700 p-3">
-          <p className="text-center mb-3">or Sign up with</p>
-          <div className="flex justify-center gap-6 align-middle">
-            <div className="google h-11 flex cursor-pointer border border-solid border-black bg-white text-black rounded px-6 py-1 hover:bg-black hover:text-white hover:border-white">
-              <div className="mr-4 mt-1 h-fit">Google</div>
-              <FcGoogle className="w-8 h-8 " />
-            </div>
-            <div className="github h-11 flex cursor-pointer border border-solid border-black bg-white text-black rounded px-6 py-1 hover:bg-black hover:text-white hover:border-white">
-              {/* <div className="github h-11 flex cursor-pointer border border-solid border-white bg-black text-white rounded px-6 py-1 hover:bg-white hover:text-black hover:border-black"> */}
-              <div className="mr-4 mt-1 h-fit">Github</div>
-              <FaSquareGithub className="w-8 h-8 cursor-pointer" />
+              <FormField
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input placeholder="email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Confirm Password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button className="w-full" type="submit" disabled={loading}>
+                {loading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  "Sign Up"
+                )}
+              </Button>
+            </form>
+          </Form>
+          <div className="o-auth border-t border-solid border-gray-300 dark:border-gray-700 p-3">
+            <p className="text-center mb-3">or Sign up with</p>
+            <div className="flex justify-center gap-6 align-middle">
+              <div
+                // onClick={handleGoogleLogin}
+                className="h-11 flex cursor-pointer border border-solid bg-black text-white dark:bg-white dark:text-black px-6 py-1 rounded hover:dark:bg-gray-200"
+              >
+                <div className="mr-4 mt-1 h-fit">Google</div>
+                <FcGoogle className="w-8 h-8 " />
+              </div>
+              <div
+                // onClick={handleGithubLogin}
+                className="h-11 flex cursor-pointer border border-solid bg-black text-white dark:bg-white dark:text-black px-6 py-1 rounded hover:dark:bg-gray-200"
+              >
+                <div className="mr-4 mt-1 h-fit">Github</div>
+                <FaSquareGithub className="w-8 h-8 cursor-pointer" />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="text-center mt-4">
-          <p>
-            Already have an account?{" "}
-            <Link href="/login" className="text-blue-500 hover:text-blue-700">
-              Login
-            </Link>
-          </p>
+
+          <div className="text-center mt-4">
+            <p>
+              Already have an account?{" "}
+              <Link href="/login" className="text-blue-500 hover:text-blue-700">
+                Login
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
