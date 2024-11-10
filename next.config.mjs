@@ -22,7 +22,7 @@ const nextConfig = {
           { key: "Access-Control-Allow-Credentials", value: "true" },
           {
             key: "Access-Control-Allow-Origin",
-            value: "https://aman-meenia.work.gd",
+            value: "https://chatsphere-com-g2se.vercel.app",
           },
           {
             key: "Access-Control-Allow-Methods",
